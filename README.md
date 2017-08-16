@@ -91,3 +91,6 @@ export default class extends React.Component {
     }
 }
 ```
+
+## resources:
++ https://github.com/afeiship/rn-module-redux
