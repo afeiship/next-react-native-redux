@@ -22,5 +22,9 @@
     "gulp-size": "^2.1.0",
     "gulp-uglify": "^2.1.2",
     "yargs": "^4.7.1"
+  },
+  "dependencies": {
+    "create-react-class": "^15.6.0",
+    "next-js-core2": "github:afeiship/next-js-core2"
   }
 }
