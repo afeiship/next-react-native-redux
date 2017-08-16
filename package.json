@@ -24,6 +24,8 @@
     "yargs": "^4.7.1"
   },
   "dependencies": {
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.44.0",
     "object-assign": "^4.1.1",
     "redux": "^3.7.2",
     "create-react-class": "^15.6.0",

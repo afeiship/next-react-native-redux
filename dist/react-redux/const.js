@@ -1,3 +1,3 @@
 module.exports = {
-    COMMAND: '__command__'
+  COMMAND: '__command__'
 };
