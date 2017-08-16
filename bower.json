@@ -1,0 +1,26 @@
+{
+  "name": "react-native-redux-boot",
+  "description": "Redux app boot for react native.",
+  "main": "dist/react-native-redux-boot.js",
+  "authors": [
+    "afei"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "next"
+  ],
+  "homepage": "https://github.com/afeiship/react-native-redux-boot",
+  "moduleType": [
+    "amd"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "gulp",
+    "gulpfile.js"
+  ]
+}
