@@ -10,7 +10,7 @@
   "scripts": {
     "build": "gulp"
   },
-  "main": "dist/react-native-redux-boot.js",
+  "main": "src/index.js",
   "license": "MIT",
   "devDependencies": {
     "del": "^2.2.1",
