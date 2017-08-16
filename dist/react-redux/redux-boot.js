@@ -4,9 +4,9 @@ var nx = require('next-js-core2');
 var createStore = require('redux').createStore;
 var bindActionCreators = require('redux').bindActionCreators;
 
-var States = require('../redux-base/states');
-var Actions = require('../redux-base/actions');
-var Reducers = require('../redux-base/reducers');
+var States = require('../redux-base/redux-states');
+var Actions = require('../redux-base/redux-actions');
+var Reducers = require('../redux-base/redux-reducers');
 var COMMAND = require('./const').COMMAND;
 
 import {View, Text, Button, Alert} from 'react-native';
