@@ -81,6 +81,7 @@ var ReduxBoot = nx.declare({
             }, inContext);
         },
         renderTo: function () {
+            var self = this;
             var appKeys = AppRegistry.getAppKeys();
             var initialProps = {
                 store: this._store,
@@ -93,7 +94,7 @@ var ReduxBoot = nx.declare({
             if (!appKeys.length > 0) {
                 AppRegistry.registerComponent(this._name, function () {
                     return function () {
-                        return React.createElement(this._app, initialProps);
+                        return React.createElement(self._app, initialProps);
                     };
                 });
             } else {
