@@ -9,8 +9,6 @@ var Actions = require('../redux-base/redux-actions');
 var Reducers = require('../redux-base/redux-reducers');
 var COMMAND = require('./const').COMMAND;
 
-import {View, Text, Button, Alert} from 'react-native';
-
 var ReduxBoot = nx.declare({
     statics: {
         run: function (inApp, inName, inContainer) {
@@ -83,8 +81,8 @@ var ReduxBoot = nx.declare({
             }, inContext);
         },
         renderTo: function () {
-            const appKeys = AppRegistry.getAppKeys();
-            const initialProps = {
+            var appKeys = AppRegistry.getAppKeys();
+            var initialProps = {
                 store: this._store,
                 update: States.getUpdate.bind(this, this._store),
                 command: this.command.bind(this),
@@ -93,15 +91,14 @@ var ReduxBoot = nx.declare({
             };
 
             if (!appKeys.length > 0) {
-                AppRegistry.registerComponent(
-                    this._name,
-                    () => {
-                        return () => React.createElement(this._app, initialProps);
-                    }
-                );
+                AppRegistry.registerComponent(this._name, function () {
+                    return function () {
+                        return React.createElement(this._app, initialProps);
+                    };
+                });
             } else {
                 AppRegistry.runApplication(this._name, {
-                    initialProps,
+                    initialProps: initialProps,
                     rootTag: 1
                 });
             }
