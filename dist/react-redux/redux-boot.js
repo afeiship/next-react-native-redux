@@ -8,11 +8,12 @@ var States = require('../redux-base/redux-states');
 var Actions = require('../redux-base/redux-actions');
 var Reducers = require('../redux-base/redux-reducers');
 var COMMAND = require('./const').COMMAND;
+var ERROR_MSG = 'App initialState and displayName must be set!';
 
 var ReduxBoot = nx.declare({
   statics: {
-    run: function (inApp, inName, inContainer) {
-      return new ReduxBoot(inApp, inName, inContainer);
+    run: function (inApp, inContainer) {
+      return new ReduxBoot(inApp, inContainer);
     }
   },
   properties: {
@@ -50,12 +51,10 @@ var ReduxBoot = nx.declare({
     }
   },
   methods: {
-    init: function (inApp, inName) {
+    init: function (inApp) {
+      if (!inApp.initialState || !inApp.displayName) nx.error(ERROR_MSG);
       this._app = inApp;
-      this._name = inName;
-      this._store = createStore(
-        this.reducers.bind(this)
-      );
+      this._store = createStore(this.reducers.bind(this));
       this._$actions = bindActionCreators(Actions, this._store.dispatch);
       this.subscribe();
       this.renderTo();
@@ -83,6 +82,7 @@ var ReduxBoot = nx.declare({
     renderTo: function () {
       var self = this;
       var appKeys = AppRegistry.getAppKeys();
+      var appName = this._app.displayName;
       var initialProps = {
         store: this._store,
         update: States.getUpdate.bind(this, this._store),
@@ -92,13 +92,13 @@ var ReduxBoot = nx.declare({
       };
 
       if (!appKeys.length > 0) {
-        AppRegistry.registerComponent(this._name, function () {
+        AppRegistry.registerComponent(appName, function () {
           return function () {
             return React.createElement(self._app, initialProps);
           };
         });
       } else {
-        AppRegistry.runApplication(this._name, {
+        AppRegistry.runApplication(appName, {
           initialProps: initialProps,
           rootTag: 1
         });
