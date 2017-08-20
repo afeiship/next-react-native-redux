@@ -52,12 +52,13 @@ var ReduxBoot = nx.declare({
   },
   methods: {
     init: function (inApp) {
-      if (!inApp.initialState || !inApp.displayName) nx.error(ERROR_MSG);
-      this._app = inApp;
-      this._store = createStore(this.reducers.bind(this));
-      this._$actions = bindActionCreators(Actions, this._store.dispatch);
-      this.subscribe();
-      this.renderTo();
+      if (inApp.initialState && inApp.displayName){
+        this._app = inApp;
+        this._store = createStore(this.reducers.bind(this));
+        this._$actions = bindActionCreators(Actions, this._store.dispatch);
+        this.subscribe();
+        this.renderTo();
+      }
     },
     reducers: function (inState, inAction) {
       var initialState = this._app.initialState();
