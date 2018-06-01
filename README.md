@@ -1,4 +1,4 @@
-# react-native-redux-boot
+# next-react-native-redux
 > Redux app boot for react native.
 
 
@@ -13,7 +13,7 @@
 + index.ios.js
 ```jsx harmony
 import {Alert} from 'react-native';
-import {ReduxBoot} from 'react-native-redux-boot';
+import {ReduxBoot} from 'next-react-native-redux';
 import App from './app/index';
 
 ReduxBoot.run(App, 'RnRedux');
@@ -21,7 +21,7 @@ ReduxBoot.run(App, 'RnRedux');
 
 + app/index.js
 ```jsx harmony
-import {ReduxAppBase} from 'react-native-redux-boot';
+import {ReduxAppBase} from 'next-react-native-redux';
 import Main from './main';
 import {View} from 'react-native';
 import React from 'react';
@@ -54,7 +54,7 @@ export default class extends ReduxAppBase {
 ```
 + app/main.js
 ```jsx harmony
-import {ReduxAppBase} from 'react-native-redux-boot';
+import {ReduxAppBase} from 'next-react-native-redux';
 import {View, ScrollView, Text, Button, Alert} from 'react-native';
 import React from 'react';
 

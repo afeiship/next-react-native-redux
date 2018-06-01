@@ -1,8 +1,8 @@
 {
-  "name": "react-native-redux-boot",
+  "name": "next-react-native-redux",
   "version": "0.0.1",
   "description": "Redux app boot for react native.",
-  "homepage": "https://github.com/afeiship/react-native-redux-boot",
+  "homepage": "https://github.com/afeiship/next-react-native-redux",
   "author": {
     "name": "afei",
     "email": "1290657123@qq.com"

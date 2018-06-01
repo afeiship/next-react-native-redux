@@ -1,7 +1,7 @@
 {
-  "name": "react-native-redux-boot",
+  "name": "next-react-native-redux",
   "description": "Redux app boot for react native.",
-  "main": "dist/react-native-redux-boot.js",
+  "main": "dist/next-react-native-redux.js",
   "authors": [
     "afei"
   ],
@@ -9,7 +9,7 @@
   "keywords": [
     "next"
   ],
-  "homepage": "https://github.com/afeiship/react-native-redux-boot",
+  "homepage": "https://github.com/afeiship/next-react-native-redux",
   "moduleType": [
     "amd"
   ],
