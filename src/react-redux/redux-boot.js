@@ -53,13 +53,14 @@ var ReduxBoot = nx.declare({
   methods: {
     init: function (inApp) {
       //if (inApp.initialState && inApp.appKey)
-      if (inApp.initialState){
+      if (inApp.initialState) {
         this._app = inApp;
+        this._rootTag = 0;
         this._store = createStore(this.reducers.bind(this));
         this._$actions = bindActionCreators(Actions, this._store.dispatch);
         this.subscribe();
         this.renderTo();
-      }else{
+      } else {
         alert(ERROR_MSG);
         nx.error(ERROR_MSG);
       }
@@ -80,11 +81,12 @@ var ReduxBoot = nx.declare({
     onCommand: function (inName, inHandler, inContext) {
       inContext.on(COMMAND, function (inSender, inArgs) {
         if (inArgs.name === inName) {
-          inHandler.call(inContext, inSender, inArgs);
+          inHandler.call(inContext, inSender, inArgs.data);
         }
       }, inContext);
     },
     renderTo: function () {
+      //https://github.com/facebook/react-native/blob/master/Libraries/ReactNative/AppRegistry.js
       var self = this;
       var appKeys = AppRegistry.getAppKeys();
       var appName = this._app.displayName;
@@ -96,16 +98,17 @@ var ReduxBoot = nx.declare({
         $: this
       };
 
-      if (!appKeys.length > 0) {
+      if (appKeys.length === 0) {
         AppRegistry.registerComponent(appName, function () {
-          return function () {
+          return function (appParams) {
+            self._rootTag = appParams.rootTag;
             return React.createElement(self._app, initialProps);
           };
         });
       } else {
         AppRegistry.runApplication(appName, {
           initialProps: initialProps,
-          rootTag: 1
+          rootTag: this._rootTag
         });
       }
     }
