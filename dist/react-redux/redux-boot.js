@@ -8,12 +8,12 @@ var States = require('../redux-base/redux-states');
 var Actions = require('../redux-base/redux-actions');
 var Reducers = require('../redux-base/redux-reducers');
 var COMMAND = require('./const').COMMAND;
-var ERROR_MSG = 'App initialState and displayName must be set!';
+var ERROR_MSG = 'App initialState must be set!';
 
 var ReduxBoot = nx.declare({
   statics: {
-    run: function (inApp, inContainer) {
-      return new ReduxBoot(inApp, inContainer);
+    run: function (inApp, inAppName, inOptions) {
+      return new ReduxBoot(inApp, inAppName, inOptions);
     }
   },
   properties: {
@@ -51,10 +51,12 @@ var ReduxBoot = nx.declare({
     }
   },
   methods: {
-    init: function (inApp) {
+    init: function (inApp, inAppName, inOptions) {
       //if (inApp.initialState && inApp.appKey)
       if (inApp.initialState) {
         this._app = inApp;
+        this._appName = inAppName;
+        this._options = inOptions;
         this._rootTag = 0;
         this._store = createStore(this.reducers.bind(this));
         this._$actions = bindActionCreators(Actions, this._store.dispatch);
@@ -89,7 +91,7 @@ var ReduxBoot = nx.declare({
       //https://github.com/facebook/react-native/blob/master/Libraries/ReactNative/AppRegistry.js
       var self = this;
       var appKeys = AppRegistry.getAppKeys();
-      var appName = this._app.displayName;
+      var appName = this._appName;
       var initialProps = {
         store: this._store,
         update: States.getUpdate.bind(this, this._store),
@@ -100,8 +102,8 @@ var ReduxBoot = nx.declare({
 
       if (appKeys.length === 0) {
         AppRegistry.registerComponent(appName, function () {
-          return function (appParams) {
-            self._rootTag = appParams.rootTag;
+          return function () {
+            self._rootTag = arguments[0].rootTag;
             return React.createElement(self._app, initialProps);
           };
         });
